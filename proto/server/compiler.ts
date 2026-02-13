@@ -1,37 +1,6 @@
 import type { Program } from "../client/src/ProgramEditor/types.ts";
-
-function leftPad(str: string, n: number) {
-    let pStr = str;
-    while (pStr.length < n) {
-        pStr = "0" + pStr;
-    }
-    return pStr;
-}
-
-/**
- * Only supports max 32 bits
- */
-function leMax32(n: number, bits: number): string {
-    const arr: number[] = [];
-    for (let i = 0; i < bits; i += 8) {
-        arr.push(n >> i);
-    }
-
-    return [...(new Uint8Array(arr))]
-        .map((v) => leftPad(v.toString(16), 2))
-        .join("");
-}
-
-function le(n: number, bits: number): string {
-    if (bits > 32) {
-        return leMax32(n, 32) + leftPad("", (bits - 32) / 4);
-    }
-    return leMax32(n, bits);
-}
-
-function strToBytes(str: string): number[] {
-    return str.split("").map((c) => c.charCodeAt(0));
-}
+import { generateCode } from "./codeGenerator.ts";
+import { le } from "./common.ts";
 
 const headerFieldsList = {
     ehdr64: [
@@ -124,38 +93,7 @@ const elfHeader: Record<string, Record<string, number>> = {
 const ehdrStr = headerFieldsList.ehdr64.map(([size, name]) => {
     const value = elfHeader.ehdr64[name];
     return le(value, size * 8);
-});
-
-function generateCode(program: Program) {
-    // const str = strToBytes(message);
-    const str = strToBytes(program.body[0].args[0]);
-    // const str = [
-    //     [0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, 0x57],
-    //     [0x6F, 0x72, 0x6C, 0x64, 0x21, 0x0D, 0x0A],
-    // ].flat();
-
-    return [
-        // mov eax,1  –  Put the linux syscall id for "write" (1) into the eax register
-        [0xB8, 0x01, 0x00, 0x00, 0x00],
-        // mov edi,1  –  Put the file id into the edi register (1 = stdout)
-        [0xBF, 0x01, 0x00, 0x00, 0x00],
-        // lea rsi,[rip+0x10]  –  Put the address of the string into the rsi register
-        // (distance from the current instruction to the string is 16 bytes)
-        // 0x8D is the op code for lea. 0x48 is a prefix telling that the operands are 64 bits.
-        // 0x35 is the ModR/M byte for *SI destination register and 32-bit displacement
-        // (Table 2-2 in chapter 2.1.3 of the x86 instruction reference manual)
-        [0x48, 0x8D, 0x35, 0x10, 0x00, 0x00, 0x00],
-        // mov edx,15  –  Put the size of the string into the edx register
-        // "Hello, World!\n" is 15 bytes, "\n" is translated by linux into
-        // two separate characters: line feed, and carriage return
-        [0xBA, str.length, 0x00, 0x00, 0x00],
-        [0x0F, 0x05], // syscall
-        [0xB8, 0x3C, 0x00, 0x00, 0x00], // mov eax,60
-        [0x31, 0xFF], // xor edi,edi
-        [0x0F, 0x05], // syscall
-        ...str,
-    ].flat().map((v) => le(v, 8));
-}
+}).flat();
 
 function generatePhdr(fileSize: number) {
     elfHeader.phdr64 = {
@@ -172,7 +110,7 @@ function generatePhdr(fileSize: number) {
     return headerFieldsList.phdr64.map(([size, name]) => {
         const value = elfHeader.phdr64[name];
         return le(value, size * 8);
-    });
+    }).flat();
 }
 
 function getPermissionNumber(permission: string) {
@@ -191,32 +129,13 @@ export async function compile(program: Program) {
 
     const phdrStr = generatePhdr(fileSize);
 
-    const hexstr = [...ehdrStr, ...phdrStr, ...codeStr].join("");
+    const hexstr = [...ehdrStr, ...phdrStr, ...codeStr];
 
-    for (let i = 0; i < hexstr.length; i += 32) {
-        const hexstr32 = hexstr.slice(i, i + 32);
-        await Deno.writeFile("foo.elf", Uint8Array.fromHex(hexstr32), {
+    for (let i = 0; i < hexstr.length; i += 4) {
+        const hexstr32 = hexstr.slice(i, i + 4);
+        await Deno.writeFile("foo.elf", new Uint8Array(hexstr32), {
             append: true,
             mode: getPermissionNumber("rwxrwxr-x"),
         });
     }
 }
-
-// const program: Program = {
-//     name: "start",
-//     args: [],
-//     keywords: ["int"],
-//     body: [
-//         {
-//             type: "call",
-//             name: "print",
-//             args: ["hello"],
-//         },
-//     ],
-// };
-
-// await compile(program);
-
-// const command = new Deno.Command("./foo.elf");
-
-// const process = command.spawn();
