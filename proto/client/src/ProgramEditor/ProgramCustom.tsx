@@ -10,7 +10,7 @@ const defaultProgram: Program = {
         {
             type: "call",
             name: "print",
-            args: ["hello"],
+            args: ["hel\\lo\\n"],
         },
     ],
 };
@@ -72,20 +72,38 @@ export function ProgramCustom() {
                                 <div style={{ marginRight: "10px" }}>
                                     {line.name}
                                 </div>
-                                <div>
-                                    <input
-                                        type="text"
-                                        value={line.args[0]}
-                                        onChange={(e) =>
-                                            setArgs(i, [e.target.value])}
-                                    />
-                                </div>
+                                <RawInput
+                                    value={line.args[0]}
+                                    onChange={(value: string) =>
+                                        setArgs(i, [value])}
+                                />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
             <button type="button" onClick={compile}>Compile</button>
+        </div>
+    );
+}
+
+interface RawInputProps {
+    value: string;
+    onChange: (value: string) => void;
+}
+
+function RawInput({ value, onChange }: RawInputProps) {
+    return <pre style={{ margin: 0 }}>{value}</pre>;
+
+    return (
+        <div>
+            <input
+                type="text"
+                value={value}
+                onChange={(e) => {
+                    onChange(e.target.value);
+                }}
+            />
         </div>
     );
 }

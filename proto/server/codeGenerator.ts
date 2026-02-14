@@ -75,12 +75,7 @@ function lea(displacement: number) {
      */
     const prefix = 0b01001000;
 
-    const opcode = 0x8D; // opcode for lea
-
-    // const mod = 0b00 << 6;
-    // const reg = 0b110 << 3; // *SI destination register
-    // const rm = 0b101; // 32-bit displacement
-    // const modrm = mod | reg | rm; // 0b00110101
+    const opcode = 0x8D;
 
     return [prefix, opcode, modrm("disp32", "si"), ...le(displacement, 32)];
 }
@@ -95,20 +90,55 @@ function xor(reg1: RmKey, reg2: RegKey) {
 }
 
 export function generateCode(program: Program) {
-    const str = strToBytes(program.body[0].args[0]);
+    const strings: string[] = [];
+    const leas: number[][] = []; // [leaip, lealength, textp]
+    let textp = 0;
+    let rip = 0;
+    let code: number[] = [];
+    program.body.forEach((l) => {
+        if (l.name === "print") {
+            const str = l.args[0];
+            const write1 = [
+                mov("eax", linux.syscall.write),
+                mov("edi", linux.fd.stdout),
+            ].flat();
+            const leaip = rip + write1.length;
+            const templea = lea(0);
+            const lealength = templea.length;
+            const write = [
+                ...write1,
+                templea, // placeholder lea to be filled with correct distance when it's known
+                mov("edx", str.length),
+                syscall(),
+            ].flat();
 
-    return [
-        mov("eax", linux.syscall.write),
-        mov("edi", linux.fd.stdout),
-        // Put the address of the string into the rsi register
-        // (distance from the current instruction to the string is 16 bytes)
-        lea(0x10),
-        // Put the size of the string into the edx register
-        mov("edx", str.length),
-        syscall(),
+            code = [...code, ...write];
+            leas.push([leaip, lealength, textp]);
+            strings.push(str);
+            rip += write.length;
+            textp += str.length;
+        }
+    });
+
+    const exit = [
         mov("eax", linux.syscall.exit),
         xor("edi", "edi"),
         syscall(),
-        ...str,
     ].flat();
+
+    code = [...code, ...exit];
+
+    leas.forEach(([leaip, lealength, textp]) => {
+        const c1 = code.slice(0, leaip);
+        const nextip = leaip + lealength;
+        const dtext = code.length - nextip + textp;
+        const newlea = lea(dtext);
+        const c2 = code.slice(leaip + lealength);
+
+        code = [c1, newlea, c2].flat();
+    });
+
+    const text = strings.map((s) => strToBytes(s)).flat();
+
+    return [...code, ...text];
 }

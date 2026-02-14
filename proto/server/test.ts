@@ -9,13 +9,18 @@ const program: Program = {
         {
             type: "call",
             name: "print",
-            args: ["hello"],
+            args: ["Hello"],
         },
-        // {
-        //     type: "call",
-        //     name: "print",
-        //     args: ["world"],
-        // },
+        {
+            type: "call",
+            name: "print",
+            args: [", world!\n"],
+        },
+        {
+            type: "call",
+            name: "print",
+            args: ["And yet another string!\n"],
+        },
     ],
 };
 

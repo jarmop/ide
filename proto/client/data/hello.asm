@@ -71,6 +71,7 @@ _start:
     syscall               ;2 --> 9
 
 msg:
+    ; 13 = carriage return, 10 = linefeed
     db 'Hello, world!', 13, 10  ;15 --> 24
 
 filesize equ $ - $$
