@@ -12,6 +12,11 @@ const defaultProgram: Program = {
             name: "print",
             args: ["hel\\lo\\n"],
         },
+        {
+            type: "call",
+            name: "print",
+            args: ["hetykety"],
+        },
     ],
 };
 
@@ -52,6 +57,10 @@ export function ProgramCustom() {
                         // background: "#202020",
                         // background: "#1f1f1f",
                         color: "#ddd",
+                        borderRadius: "8px",
+                        boxShadow: "5px 5px 15px black",
+                        // minWidth: "400px",
+                        // minHeight: "100px",
                     }}
                 >
                     <FuncHdr
@@ -62,7 +71,7 @@ export function ProgramCustom() {
                     <div
                         style={{
                             // height: "100px",
-                            padding: "8px",
+                            padding: "4px 12px 6px",
                             // border: BORDER,
                             borderWidth: "0 2px 2px 2px",
                         }}

@@ -7,7 +7,6 @@ import { useEffect } from "react";
 
 export function ProgramC() {
     useEffect(() => {
-        console.log("etyj");
         hljs.configure({ languages: ["language-c"] });
         hljs.highlightAll();
     }, []);
@@ -45,7 +44,12 @@ export function ProgramC() {
                                 // background: "#202020",
                                 // background: "#1f1f1f",
                                 color: "#ddd",
+                                borderRadius: "8px",
+                                boxShadow: "5px 5px 15px black",
                             }}
+                            className={`Function ${
+                                name !== "main" ? "collapsed" : ""
+                            }`}
                         >
                             <FuncHdr
                                 name={name}
@@ -53,12 +57,7 @@ export function ProgramC() {
                                 keywords={keywords.join(" ")}
                             />
                             <div
-                                style={{
-                                    // height: "100px",
-                                    padding: "8px",
-                                    // border: BORDER,
-                                    borderWidth: "0 2px 2px 2px",
-                                }}
+                                className={`FunctionBody`}
                             >
                                 <pre
                                     className="c"

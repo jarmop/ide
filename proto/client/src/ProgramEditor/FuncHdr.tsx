@@ -13,6 +13,7 @@ export function FuncHdr({ name, args, keywords }: FuncHdrProps) {
                 // background: "#202020",
                 background: "#1a1a1a",
                 // background: "#272727",
+                borderRadius: "8px 8px 0 0",
             }}
         >
             <div
