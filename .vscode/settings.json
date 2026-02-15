@@ -1,3 +1,6 @@
 {
-    "deno.enable": true
+    "deno.enable": true,
+    "C_Cpp.default.includePath": [
+        "/usr/include/freetype2"
+    ]
 }
