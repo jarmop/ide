@@ -1,9 +1,17 @@
+import hljs from "highlight.js";
 import { code } from "../../data/codestrings/ide.js";
 import { FuncHdr } from "./FuncHdr.tsx";
+import { useEffect } from "react";
 
 // const BORDER = "1px solid #666";
 
 export function ProgramC() {
+    useEffect(() => {
+        console.log("etyj");
+        hljs.configure({ languages: ["language-c"] });
+        hljs.highlightAll();
+    }, []);
+
     return (
         <div
             className="ProgramEditor"
@@ -52,8 +60,13 @@ export function ProgramC() {
                                     borderWidth: "0 2px 2px 2px",
                                 }}
                             >
-                                <pre>
-                                {fbody.map((l, i) => <div className="codeline" key={i}>{l.slice(4)}</div>)}
+                                <pre
+                                    className="c"
+                                    style={{ margin: 0, padding: 0 }}
+                                >
+                                    <code style={{padding: 0}}>
+                                        {fbody.map((l) => l.slice(4)).join('\n')}
+                                    </code>
                                 </pre>
                             </div>
                         </div>

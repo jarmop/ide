@@ -2,6 +2,10 @@ body, #root {
     height: 100%;
 }
 
+.hljs {
+    background: none;
+}
+
 :root {
     --border-color: #ddd;
 }
