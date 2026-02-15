@@ -7,7 +7,7 @@
     /* font-family: Arial, Helvetica, sans-serif; */
     /* font-family: 'Courier New', Courier, monospace; */
     font-family: monospace;
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .Function {
@@ -20,8 +20,9 @@
     box-shadow: 5px 5px 15px black;
 
     &.collapsed {
+        /* display: none; */
         height: 70px;
-        /* width: 300px; */
+        width: 300px;
         overflow: hidden;
         position: relative;
 
@@ -35,7 +36,7 @@
             background:linear-gradient(transparent, #232323);
             border-radius: 0 0 8px 8px;
         }
-        /* &:after {
+        &:after {
             content:'';
             width:10%;
             height:100%;
@@ -44,7 +45,7 @@
             bottom:0;
             background:linear-gradient(to right, transparent, #202020);
             border-radius: 0 0 8px 8px;
-        } */
+        }
     }
 }
 
@@ -59,3 +60,6 @@
 pre code.hljs {
     overflow: inherit;
 }
+/* .hljs-comment {
+    display: none;
+} */

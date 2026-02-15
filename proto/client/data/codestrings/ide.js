@@ -1,4 +1,4 @@
-export const code = `
+export const ide = `
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
