@@ -1,0 +1,343 @@
+0	read	read from a file descriptor	unistd.h		common	sys_read
+1	write	write to a file descriptor	unistd.h		common	sys_write
+2	open	open and possibly create a file	fcntl.h		common	sys_open
+3	close	close a file descriptor	unistd.h		common	sys_close
+4	stat	get file status	sys/stat.h		common	sys_newstat
+5	fstat	get file status	sys/stat.h		common	sys_newfstat
+6	lstat	get file status	sys/stat.h		common	sys_newlstat
+7	poll	wait for some event on a file descriptor	poll.h		common	sys_poll
+8	lseek	reposition read/write file offset	unistd.h		common	sys_lseek
+9	mmap	map or unmap files or devices into memory	sys/mman.h		common	sys_mmap
+10	mprotect	set protection on a region of memory	sys/mman.h		common	sys_mprotect
+11	munmap	map or unmap files or devices into memory	sys/mman.h		common	sys_munmap
+12	brk	change data segment size	unistd.h		common	sys_brk
+13	rt_sigaction	examine and change a signal action	signal.h		64	sys_rt_sigaction
+14	rt_sigprocmask	examine and change blocked signals	signal.h		common	sys_rt_sigprocmask
+15	rt_sigreturn	return from signal handler and cleanup stack frame	sys/ucontext.h		64	sys_rt_sigreturn
+16	ioctl	control device	sys/ioctl.h		64	sys_ioctl
+17	pread64 	read from a file descriptor at a given offset	unistd.h		common	sys_pread64
+18	pwrite64	write to a file descriptor at a given offset	unistd.h		common	sys_pwrite64
+19	readv	read or write data into multiple buffers	sys/uio.h		64	sys_readv
+20	writev	read or write data into multiple buffers	sys/uio.h		64	sys_writev
+21	access	check user's permissions for a file	unistd.h		common	sys_access
+22	pipe	create pipe	unistd.h		common	sys_pipe
+23	select	synchronous I/O multiplexing	sys/select.h		common	sys_select
+24	sched_yield	yield the processor	sched.h		common	sys_sched_yield
+25	mremap	remap a virtual memory address	sys/mman.h		common	sys_mremap
+26	msync	synchronize a file with a memory map	sys/mman.h		common	sys_msync
+27	mincore	determine whether pages are resident in memory	sys/mman.h		common	sys_mincore
+28	madvise	give advice about use of memory	sys/mman.h		common	sys_madvise
+29	shmget	allocates a System V shared memory segment	sys/shm.h		common	sys_shmget
+30	shmat	System V shared memory operations	sys/shm.h		common	sys_shmat
+31	shmctl	System V shared memory control	sys/shm.h		common	sys_shmctl
+32	dup	duplicate a file descriptor	unistd.h		common	sys_dup
+33	dup2	duplicate a file descriptor	unistd.h		common	sys_dup2
+34	pause	wait for signal	unistd.h		common	sys_pause
+35	nanosleep	high-resolution sleep	time.h		common	sys_nanosleep
+36	getitimer	get or set value of an interval timer	sys/time.h		common	sys_getitimer
+37	alarm	set an alarm clock for delivery of a signal	unistd.h		common	sys_alarm
+38	setitimer	get or set value of an interval timer	sys/time.h		common	sys_setitimer
+39	getpid	get process identification	unistd.h		common	sys_getpid
+40	sendfile	transfer data between file descriptors	sys/sendfile.h		common	sys_sendfile64
+41	socket	create an endpoint for communication	sys/socket.h		common	sys_socket
+42	connect	initiate a connection on a socket	sys/socket.h		common	sys_connect
+43	accept	accept a connection on a socket	sys/socket.h		common	sys_accept
+44	sendto	send a message on a socket	sys/socket.h		common	sys_sendto
+45	recvfrom	receive a message from a socket	sys/socket.h		64	sys_recvfrom
+46	sendmsg	send a message on a socket	sys/socket.h		64	sys_sendmsg
+47	recvmsg	receive a message from a socket	sys/socket.h		64	sys_recvmsg
+48	shutdown	shut down part of a full-duplex connection	sys/socket.h		common	sys_shutdown
+49	bind	bind a name to a socket	sys/socket.h		common	sys_bind
+50	listen	listen for connections on a socket	sys/socket.h		common	sys_listen
+51	getsockname	get socket name	sys/socket.h		common	sys_getsockname
+52	getpeername	get name of connected peer socket	sys/socket.h		common	sys_getpeername
+53	socketpair	create a pair of connected sockets	sys/socket.h		common	sys_socketpair
+54	setsockopt	get and set options on sockets	sys/socket.h		64	sys_setsockopt
+55	getsockopt	get and set options on sockets	sys/socket.h		64	sys_getsockopt
+56	clone	create a child process	sched.h		common	sys_clone
+57	fork	create a child process	unistd.h		common	sys_fork
+58	vfork	create a child process and block parent	unistd.h		common	sys_vfork
+59	execve	execute program	unistd.h		64	sys_execve
+60	exit	terminate the calling process	unistd.h		common	sys_exit
+61	wait4	wait for process to change state, BSD style	sys/wait.h		common	sys_wait4
+62	kill	send signal to a process	signal.h		common	sys_kill
+63	uname	get name and information about current kernel	sys/utsname.h		common	sys_newuname
+64	semget	get a System V semaphore set identifier	sys/sem.h		common	sys_semget
+65	semop	System V semaphore operations	sys/sem.h		common	sys_semop
+66	semctl	System V semaphore control operations	sys/sem.h		common	sys_semctl
+67	shmdt	System V shared memory operations	sys/shm.h		common	sys_shmdt
+68	msgget	get a System V message queue identifier	sys/msg.h		common	sys_msgget
+69	msgsnd	System V message queue operations	sys/msg.h		common	sys_msgsnd
+70	msgrcv	System V message queue operations	sys/msg.h		common	sys_msgrcv
+71	msgctl	System V message control operations	sys/msg.h		common	sys_msgctl
+72	fcntl	manipulate file descriptor	fcntl.h		common	sys_fcntl
+73	flock	apply or remove an advisory lock on an open file	sys/file.h		common	sys_flock
+74	fsync	synchronize a file's in-core state with storage device	unistd.h		common	sys_fsync
+75	fdatasync	synchronize a file's in-core state with storage device	unistd.h		common	sys_fdatasync
+76	truncate	truncate a file to a specified length	unistd.h		common	sys_truncate
+77	ftruncate	truncate a file to a specified length	unistd.h		common	sys_ftruncate
+78	getdents	get directory entries	sys/syscall.h		common	sys_getdents
+79	getcwd	get current working directory	unistd.h		common	sys_getcwd
+80	chdir	change working directory	unistd.h		common	sys_chdir
+81	fchdir	change working directory	unistd.h		common	sys_fchdir
+82	rename	change the name or location of a file	stdio.h		common	sys_rename
+83	mkdir	create a directory	sys/stat.h		common	sys_mkdir
+84	rmdir	delete a directory	unistd.h		common	sys_rmdir
+85	creat	open and possibly create a file	fcntl.h		common	sys_creat
+86	link	make a new name for a file	unistd.h		common	sys_link
+87	unlink	delete a name and possibly the file it refers to	unistd.h		common	sys_unlink
+88	symlink	make a new name for a file	unistd.h		common	sys_symlink
+89	readlink	read value of a symbolic link	unistd.h		common	sys_readlink
+90	chmod	change permissions of a file	sys/stat.h		common	sys_chmod
+91	fchmod	change permissions of a file	sys/stat.h		common	sys_fchmod
+92	chown	change ownership of a file	unistd.h		common	sys_chown
+93	fchown	change ownership of a file	unistd.h		common	sys_fchown
+94	lchown	change ownership of a file	unistd.h		common	sys_lchown
+95	umask	set file mode creation mask	sys/stat.h		common	sys_umask
+96	gettimeofday	get / set time	sys/time.h		common	sys_gettimeofday
+97	getrlimit	get/set resource limits	sys/resource.h		common	sys_getrlimit
+98	getrusage	get resource usage	sys/resource.h		common	sys_getrusage
+99	sysinfo	return system information	sys/sysinfo.h		common	sys_sysinfo
+100	times	get process times	sys/times.h		common	sys_times
+101	ptrace	process trace	sys/ptrace.h		64	sys_ptrace
+102	getuid	get user identity	unistd.h		common	sys_getuid
+103	syslog	read and/or clear kernel message ring buffer; set console_loglevel	sys/syscall.h		common	sys_syslog
+104	getgid	get group identity	unistd.h		common	sys_getgid
+105	setuid	set user identity	unistd.h		common	sys_setuid
+106	setgid	set group identity	unistd.h		common	sys_setgid
+107	geteuid	get user identity	unistd.h		common	sys_geteuid
+108	getegid	get group identity	unistd.h		common	sys_getegid
+109	setpgid	set/get process group	unistd.h		common	sys_setpgid
+110	getppid	get process identification	unistd.h		common	sys_getppid
+111	getpgrp	set/get process group	unistd.h		common	sys_getpgrp
+112	setsid	creates a session and sets the process group ID	unistd.h		common	sys_setsid
+113	setreuid	set real and/or effective user or group ID	unistd.h		common	sys_setreuid
+114	setregid	set real and/or effective user or group ID	unistd.h		common	sys_setregid
+115	getgroups	get/set list of supplementary group IDs	unistd.h		common	sys_getgroups
+116	setgroups	get/set list of supplementary group IDs	unistd.h		common	sys_setgroups
+117	setresuid	set real, effective, and saved user or group ID	unistd.h		common	sys_setresuid
+118	getresuid	get real, effective, and saved user/group IDs	unistd.h		common	sys_getresuid
+119	setresgid	set real, effective, and saved user or group ID	unistd.h		common	sys_setresgid
+120	getresgid	get real, effective, and saved user/group IDs	unistd.h		common	sys_getresgid
+121	getpgid	set/get process group	unistd.h		common	sys_getpgid
+122	setfsuid	set user identity used for filesystem checks	sys/fsuid.h		common	sys_setfsuid
+123	setfsgid	set group identity used for filesystem checks	sys/fsuid.h		common	sys_setfsgid
+124	getsid	get session ID	unistd.h		common	sys_getsid
+125	capget	set/get capabilities of thread(s)			common	sys_capget
+126	capset	set/get capabilities of thread(s)			common	sys_capset
+127	rt_sigpending	examine pending signals	signal.h		64	sys_rt_sigpending
+128	rt_sigtimedwait	synchronously wait for queued signals	signal.h		64	sys_rt_sigtimedwait
+129	rt_sigqueueinfo	queue a signal and data		linux/signal.h	64	sys_rt_sigqueueinfo
+130	rt_sigsuspend	wait for a signal	signal.h		common	sys_rt_sigsuspend
+131	sigaltstack	set and/or get signal stack context	signal.h		64	sys_sigaltstack
+132	utime	change file last access and modification times	utime.h		common	sys_utime
+133	mknod	create a special or ordinary file	sys/stat.h		common	sys_mknod
+135	personality	set the process execution domain	sys/personality.h		common	sys_personality
+136	ustat	get filesystem statistics	sys/types.h		common	sys_ustat
+137	statfs	get filesystem statistics	sys/vfs.h		common	sys_statfs
+138	fstatfs	get filesystem statistics	sys/vfs.h		common	sys_fstatfs
+140	getpriority	get/set program scheduling priority	sys/resource.h		common	sys_getpriority
+141	setpriority	get/set program scheduling priority	sys/resource.h		common	sys_setpriority
+142	sched_setparam	set and get scheduling parameters	sched.h		common	sys_sched_setparam
+143	sched_getparam	set and get scheduling parameters	sched.h		common	sys_sched_getparam
+144	sched_setscheduler	set and get scheduling policy/parameters	sched.h		common	sys_sched_setscheduler
+145	sched_getscheduler	set and get scheduling policy/parameters	sched.h		common	sys_sched_getscheduler
+146	sched_get_priority_max	get static priority range	sched.h		common	sys_sched_get_priority_max
+147	sched_get_priority_min	get static priority range	sched.h		common	sys_sched_get_priority_min
+148	sched_rr_get_interval	get the SCHED_RR interval for the named process	sched.h		common	sys_sched_rr_get_interval
+149	mlock	lock and unlock memory	sys/mman.h		common	sys_mlock
+150	munlock	lock and unlock memory	sys/mman.h		common	sys_munlock
+151	mlockall	lock and unlock memory	sys/mman.h		common	sys_mlockall
+152	munlockall	lock and unlock memory	sys/mman.h		common	sys_munlockall
+153	vhangup	virtually hangup the current terminal	unistd.h		common	sys_vhangup
+154	modify_ldt	get or set a per-process LDT entry	unistd.h		common	sys_modify_ldt
+155	pivot_root	change the root mount	sys/syscall.h		common	sys_pivot_root
+156	_sysctl	read/write system parameters	unistd.h		64	sys_ni_syscall
+157	prctl	operations on a process or thread	sys/prctl.h	linux/prctl.h	common	sys_prctl
+158	arch_prctl	set architecture-specific thread state	unistd.h		common	sys_arch_prctl
+159	adjtimex	tune kernel clock	sys/timex.h		common	sys_adjtimex
+160	setrlimit	get/set resource limits	sys/resource.h		common	sys_setrlimit
+161	chroot	change root directory	unistd.h		common	sys_chroot
+162	sync	commit filesystem caches to disk	unistd.h		common	sys_sync
+163	acct	switch process accounting on or off	unistd.h		common	sys_acct
+164	settimeofday	get / set time	sys/time.h		common	sys_settimeofday
+165	mount	mount filesystem	sys/mount.h		common	sys_mount
+166	umount2	unmount filesystem	sys/mount.h		common	sys_umount
+167	swapon	start/stop swapping to file/device	sys/swap.h		common	sys_swapon
+168	swapoff	start/stop swapping to file/device	sys/swap.h		common	sys_swapoff
+169	reboot	reboot or enable/disable Ctrl-Alt-Del	unistd.h		common	sys_reboot
+170	sethostname	get/set hostname	unistd.h		common	sys_sethostname
+171	setdomainname	get/set NIS domain name	unistd.h		common	sys_setdomainname
+172	iopl	change I/O privilege level	sys/io.h		common	sys_iopl
+173	ioperm	set port input/output permissions	sys/io.h		common	sys_ioperm
+175	init_module	load a kernel module		linux/module.h	common	sys_init_module
+176	delete_module	unload a kernel module	fcntl.h		common	sys_delete_module
+179	quotactl	manipulate disk quotas	sys/quota.h		common	sys_quotactl
+186	gettid	get thread identification	unistd.h		common	sys_gettid
+187	readahead	initiate file readahead into page cache	fcntl.h		common	sys_readahead
+188	setxattr	set an extended attribute value	sys/xattr.h		common	sys_setxattr
+189	lsetxattr	set an extended attribute value	sys/xattr.h		common	sys_lsetxattr
+190	fsetxattr	set an extended attribute value	sys/xattr.h		common	sys_fsetxattr
+191	getxattr	retrieve an extended attribute value	sys/xattr.h		common	sys_getxattr
+192	lgetxattr	retrieve an extended attribute value	sys/xattr.h		common	sys_lgetxattr
+193	fgetxattr	retrieve an extended attribute value	sys/xattr.h		common	sys_fgetxattr
+194	listxattr	list extended attribute names	sys/xattr.h		common	sys_listxattr
+195	llistxattr	list extended attribute names	sys/xattr.h		common	sys_llistxattr
+196	flistxattr	list extended attribute names	sys/xattr.h		common	sys_flistxattr
+197	removexattr	remove an extended attribute	sys/xattr.h		common	sys_removexattr
+198	lremovexattr	remove an extended attribute	sys/xattr.h		common	sys_lremovexattr
+199	fremovexattr	remove an extended attribute	sys/xattr.h		common	sys_fremovexattr
+200	tkill	send a signal to a thread	signal.h		common	sys_tkill
+201	time	get time in seconds	time.h		common	sys_time
+202	futex	fast user-space locking	unistd.h		common	sys_futex
+203	sched_setaffinity	set and get a thread's CPU affinity mask	sched.h		common	sys_sched_setaffinity
+204	sched_getaffinity	set and get a thread's CPU affinity mask	sched.h		common	sys_sched_getaffinity
+206	io_setup	create an asynchronous I/O context		libaio.h	64	sys_io_setup
+207	io_destroy	destroy an asynchronous I/O context		libaio.h	common	sys_io_destroy
+208	io_getevents	read asynchronous I/O events from the completion queue		libaio.h	common	sys_io_getevents
+209	io_submit	submit asynchronous I/O blocks for processing		libaio.h	64	sys_io_submit
+210	io_cancel	cancel an outstanding asynchronous I/O operation	unistd.h		common	sys_io_cancel
+213	epoll_create	open an epoll file descriptor	sys/epoll.h		common	sys_epoll_create
+216	remap_file_pages	create a nonlinear file mapping	sys/mman.h		common	sys_remap_file_pages
+217	getdents64	get directory entries	sys/syscall.h		common	sys_getdents64
+218	set_tid_address	set pointer to thread ID	sys/syscall.h		common	sys_set_tid_address
+220	semtimedop	System V semaphore operations	sys/sem.h		common	sys_semtimedop
+221	fadvise64	predeclare an access pattern for file data	fcntl.h		common	sys_fadvise64
+222	timer_create	create a POSIX per-process timer	signal.h		64	sys_timer_create
+223	timer_settime	arm/disarm and fetch state of POSIX per-process timer	time.h		common	sys_timer_settime
+224	timer_gettime	arm/disarm and fetch state of POSIX per-process timer	time.h		common	sys_timer_gettime
+225	timer_getoverrun	get overrun count for a POSIX per-process timer	time.h		common	sys_timer_getoverrun
+226	timer_delete	delete a POSIX per-process timer	time.h		common	sys_timer_delete
+227	clock_settime	clock and time functions	time.h		common	sys_clock_settime
+228	clock_gettime	clock and time functions	time.h		common	sys_clock_gettime
+229	clock_getres	clock and time functions	time.h		common	sys_clock_getres
+230	clock_nanosleep	high-resolution sleep with specifiable clock	time.h		common	sys_clock_nanosleep
+231	exit_group	exit all threads in a process	sys/syscall.h		common	sys_exit_group
+232	epoll_wait	wait for an I/O event on an epoll file descriptor	sys/epoll.h		common	sys_epoll_wait
+233	epoll_ctl	control interface for an epoll file descriptor	sys/epoll.h		common	sys_epoll_ctl
+234	tgkill	send a signal to a thread	signal.h		common	sys_tgkill
+235	utimes	change file last access and modification times	utime.h		common	sys_utimes
+237	mbind	set memory policy for a memory range	numaif.h		common	sys_mbind
+238	set_mempolicy	set default NUMA memory policy for a thread and its children	numaif.h		common	sys_set_mempolicy
+239	get_mempolicy	retrieve NUMA memory policy for a thread	numaif.h		common	sys_get_mempolicy
+240	mq_open	open a message queue	fcntl.h		common	sys_mq_open
+241	mq_unlink	remove a message queue		mqueue.h	common	sys_mq_unlink
+242	mq_timedsend	send a message to a message queue		mqueue.h	common	sys_mq_timedsend
+243	mq_timedreceive	receive a message from a message queue		mqueue.h	common	sys_mq_timedreceive
+244	mq_notify	register for notification when a message is available		mqueue.h	64	sys_mq_notify
+245	mq_getsetattr	get/set message queue attributes		mqueue.h	common	sys_mq_getsetattr
+246	kexec_load	load a new kernel for later execution		linux/kexec.h	64	sys_kexec_load
+247	waitid	wait for process to change state	sys/wait.h		64	sys_waitid
+248	add_key	add a key to the kernel's key management facility	keyutils.h		common	sys_add_key
+249	request_key	request a key from the kernel's key management facility	keyutils.h		common	sys_request_key
+250	keyctl	manipulate the kernel's key management facility		linux/keyctl.h	common	sys_keyctl
+251	ioprio_set	get/set I/O scheduling class and priority			common	sys_ioprio_set
+252	ioprio_get	get/set I/O scheduling class and priority			common	sys_ioprio_get
+253	inotify_init	initialize an inotify instance	sys/inotify.h		common	sys_inotify_init
+254	inotify_add_watch	add a watch to an initialized inotify instance	sys/inotify.h		common	sys_inotify_add_watch
+255	inotify_rm_watch	remove an existing watch from an inotify instance	sys/inotify.h		common	sys_inotify_rm_watch
+256	migrate_pages	move all pages in a process to another set of nodes	numaif.h		common	sys_migrate_pages
+257	openat	open and possibly create a file	fcntl.h		common	sys_openat
+258	mkdirat	create a directory	sys/stat.h		common	sys_mkdirat
+259	mknodat	create a special or ordinary file	sys/stat.h		common	sys_mknodat
+260	fchownat	change ownership of a file	unistd.h		common	sys_fchownat
+261	futimesat	change timestamps of a file relative to a directory file descriptor	fcntl.h		common	sys_futimesat
+262	newfstatat	get file status	sys/stat.h		common	sys_newfstatat
+263	unlinkat	delete a name and possibly the file it refers to	unistd.h		common	sys_unlinkat
+264	renameat	change the name or location of a file	stdio.h		common	sys_renameat
+265	linkat	make a new name for a file	unistd.h		common	sys_linkat
+266	symlinkat	make a new name for a file	unistd.h		common	sys_symlinkat
+267	readlinkat	read value of a symbolic link	unistd.h		common	sys_readlinkat
+268	fchmodat	change permissions of a file	sys/stat.h		common	sys_fchmodat
+269	faccessat	check user's permissions for a file	unistd.h		common	sys_faccessat
+270	pselect6		sys/select.h		common	sys_pselect6
+271	ppoll	wait for some event on a file descriptor	poll.h		common	sys_ppoll
+272	unshare	disassociate parts of the process execution context	sched.h		common	sys_unshare
+273	set_robust_list	get/set list of robust futexes			64	sys_set_robust_list
+274	get_robust_list	get/set list of robust futexes			64	sys_get_robust_list
+275	splice	splice data to/from a pipe	fcntl.h		common	sys_splice
+276	tee	duplicating pipe content	fcntl.h		common	sys_tee
+277	sync_file_range	sync a file segment with disk	fcntl.h		common	sys_sync_file_range
+278	vmsplice	splice user pages to/from a pipe	fcntl.h		64	sys_vmsplice
+279	move_pages	move individual pages of a process to another node	numaif.h		64	sys_move_pages
+280	utimensat	change file timestamps with nanosecond precision	fcntl.h		common	sys_utimensat
+281	epoll_pwait	wait for an I/O event on an epoll file descriptor	sys/epoll.h		common	sys_epoll_pwait
+282	signalfd	create a file descriptor for accepting signals	sys/signalfd.h		common	sys_signalfd
+283	timerfd_create	timers that notify via file descriptors	sys/timerfd.h		common	sys_timerfd_create
+284	eventfd	create a file descriptor for event notification	sys/eventfd.h		common	sys_eventfd
+285	fallocate	manipulate file space	fcntl.h		common	sys_fallocate
+286	timerfd_settime	timers that notify via file descriptors	sys/timerfd.h		common	sys_timerfd_settime
+287	timerfd_gettime	timers that notify via file descriptors	sys/timerfd.h		common	sys_timerfd_gettime
+288	accept4	accept a connection on a socket	sys/socket.h		common	sys_accept4
+289	signalfd4	create a file descriptor for accepting signals	sys/signalfd.h		common	sys_signalfd4
+290	eventfd2	create a file descriptor for event notification	sys/eventfd.h		common	sys_eventfd2
+291	epoll_create1	open an epoll file descriptor	sys/epoll.h		common	sys_epoll_create1
+292	dup3	duplicate a file descriptor	unistd.h		common	sys_dup3
+293	pipe2	create pipe	unistd.h		common	sys_pipe2
+294	inotify_init1	initialize an inotify instance	sys/inotify.h		common	sys_inotify_init1
+295	preadv	read or write data into multiple buffers	sys/uio.h		64	sys_preadv
+296	pwritev	read or write data into multiple buffers	sys/uio.h		64	sys_pwritev
+297	rt_tgsigqueueinfo	queue a signal and data		linux/signal.h	64	sys_rt_tgsigqueueinfo
+298	perf_event_open	set up performance monitoring		linux/perf_event.h	common	sys_perf_event_open
+299	recvmmsg	receive multiple messages on a socket	sys/socket.h		64	sys_recvmmsg
+300	fanotify_init	create and initialize fanotify group	fcntl.h		common	sys_fanotify_init
+301	fanotify_mark	add, remove, or modify an fanotify mark on a filesystem object	sys/fanotify.h		common	sys_fanotify_mark
+302	prlimit64	get/set resource limits	sys/resource.h		common	sys_prlimit64
+303	name_to_handle_at	obtain handle for a pathname and open file via a handle	fcntl.h		common	sys_name_to_handle_at
+304	open_by_handle_at	obtain handle for a pathname and open file via a handle	fcntl.h		common	sys_open_by_handle_at
+305	clock_adjtime	tune kernel clock	sys/timex.h		common	sys_clock_adjtime
+306	syncfs	commit filesystem caches to disk	unistd.h		common	sys_syncfs
+307	sendmmsg	send multiple messages on a socket	sys/socket.h		64	sys_sendmmsg
+308	setns	reassociate thread with a namespace	sched.h		common	sys_setns
+309	getcpu	determine CPU and NUMA node on which the calling thread is running	sched.h		common	sys_getcpu
+310	process_vm_readv	transfer data between process address spaces	sys/uio.h		64	sys_process_vm_readv
+311	process_vm_writev	transfer data between process address spaces	sys/uio.h		64	sys_process_vm_writev
+312	kcmp	compare two processes to determine if they share a kernel resource			common	sys_kcmp
+313	finit_module	load a kernel module		linux/module.h	common	sys_finit_module
+314	sched_setattr	set and get scheduling policy and attributes	sched.h		common	sys_sched_setattr
+315	sched_getattr	set and get scheduling policy and attributes	sched.h		common	sys_sched_getattr
+316	renameat2	change the name or location of a file	stdio.h		common	sys_renameat2
+317	seccomp	operate on Secure Computing state of the process		linux/seccomp.h	common	sys_seccomp
+318	getrandom	obtain a series of random bytes	sys/random.h		common	sys_getrandom
+319	memfd_create	create an anonymous file	sys/mman.h		common	sys_memfd_create
+320	kexec_file_load	load a new kernel for later execution		linux/kexec.h	common	sys_kexec_file_load
+321	bpf	perform a command on an extended BPF map or program	linux/bpf.h		common	sys_bpf
+322	execveat	execute program relative to a directory file descriptor	unistd.h	linux/fcntl.h	64	sys_execveat
+323	userfaultfd	create a file descriptor for handling page faults in user space	fcntl.h		common	sys_userfaultfd
+324	membarrier	issue memory barriers on a set of threads		linux/membarrier.h	common	sys_membarrier
+325	mlock2	lock and unlock memory	sys/mman.h		common	sys_mlock2
+326	copy_file_range	Copy a range of data from one file to another	unistd.h		common	sys_copy_file_range
+327	preadv2	read or write data into multiple buffers	sys/uio.h		64	sys_preadv2
+328	pwritev2	read or write data into multiple buffers	sys/uio.h		64	sys_pwritev2
+329	pkey_mprotect	set protection on a region of memory	sys/mman.h		common	sys_pkey_mprotect
+330	pkey_alloc	allocate or free a protection key	sys/mman.h		common	sys_pkey_alloc
+331	pkey_free	allocate or free a protection key	sys/mman.h		common	sys_pkey_free
+332	statx	get file status (extended)	fcntl.h		common	sys_statx
+424	pidfd_send_signal	send a signal to a process specified by a file descriptor		linux/signal.h	common	sys_pidfd_send_signal
+425	io_uring_setup	setup a context for performing asynchronous I/O	liburing.h		common	sys_io_uring_setup
+426	io_uring_enter	initiate and/or complete asynchronous I/O	liburing.h		common	sys_io_uring_enter
+427	io_uring_register	register files or user buffers for asynchronous I/O	liburing.h		common	sys_io_uring_register
+428	open_tree	open path or create detached mount object and attach to fd	fcntl.h		common	sys_open_tree
+429	move_mount	move or attach mount object to filesystem	fcntl.h		common	sys_move_mount
+430	fsopen	create a new filesystem context	sys/mount.h		common	sys_fsopen
+431	fsconfig	configure new or existing filesystem context	sys/mount.h		common	sys_fsconfig
+432	fsmount	instantiate mount object from filesystem context	sys/mount.h		common	sys_fsmount
+433	fspick	select filesystem for reconfiguration	fcntl.h		common	sys_fspick
+434	pidfd_open	obtain a file descriptor that refers to a task	sys/syscall.h		common	sys_pidfd_open
+435	clone3	create a child process	sched.h		common	sys_clone3
+436	close_range	close all file descriptors in a given range	unistd.h		common	sys_close_range
+437	openat2	open and possibly create a file (extended)	fcntl.h		common	sys_openat2
+438	pidfd_getfd	obtain a duplicate of another process's file descriptor	sys/syscall.h		common	sys_pidfd_getfd
+439	faccessat2	check user's permissions for a file	unistd.h		common	sys_faccessat2
+440	process_madvise	give advice about use of memory to a process	sys/mman.h		common	sys_process_madvise
+441	epoll_pwait2	wait for an I/O event on an epoll file descriptor	sys/epoll.h		common	sys_epoll_pwait2
+442	mount_setattr	change properties of a mount or mount tree	fcntl.h		common	sys_mount_setattr
+443	quotactl_fd	manipulate disk quotas	sys/quota.h		common	sys_quotactl_fd
+444	landlock_create_ruleset	create a new Landlock ruleset		linux/landlock.h	common	sys_landlock_create_ruleset
+445	landlock_add_rule	add a new Landlock rule to a ruleset		linux/landlock.h	common	sys_landlock_add_rule
+446	landlock_restrict_self	enforce a Landlock ruleset		linux/landlock.h	common	sys_landlock_restrict_self
+447	memfd_secret	create an anonymous RAM-based file to access secret memory regions	sys/syscall.h		common	sys_memfd_secret
+451	cachestat	query the page cache statistics of a file	sys/mman.h		common	sys_cachestat
+457	statmount	get a mount status		linux/mount.h	common	sys_statmount
+458	listmount	get a list of mount ID's		linux/mount.h	common	sys_listmount
+467	open_tree_attr	open path or create detached mount object and attach to fd	fcntl.h		common	sys_open_tree_attr

@@ -8,12 +8,17 @@
 
 const str = await Deno.readTextFile("syscall_64.tbl");
 
-const rows = str.split('\n').filter(row => row[0] !== '#');
+const cleanedRows = str
+    .split('\n')
+    // Remove comments and empty lines
+    .filter(row => row[0] !== '#' && row.trim().length > 0)
+    // Split by any amount of space and tab
+    .map(row => row.split(/[\s\t]+/))
+    // Remove x32 syscalls
+    .filter(cols => cols[1] !== 'x32')
+    // Reorder columns and join back together
+    .map(cols => [cols[0], cols[2], cols[1], cols[3]].join('\t'));
 
-rows.forEach((row) => {
-    const cols = row.split(/[\s\t]+/);
-    if (cols[1] !== 'x32') {
-        const cleanedRow = [cols[0], cols[2]].join('\t');
-        console.log(cleanedRow);
-    }
-});
+// console.log(cleanedRows.join('\n'));
+
+await Deno.writeTextFile("syscall_64_clean2.tbl", cleanedRows.join('\n'));

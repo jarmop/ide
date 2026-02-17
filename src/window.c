@@ -591,6 +591,10 @@ int run_window() {
         exit(1);
     }
     
+    /**
+     * Return the file descriptor associated with the display so it can be 
+     * integrated into the main loop.
+     */
     int wl_fd = wl_display_get_fd(display);
     if (wl_fd < 0) {
         fprintf(stderr, "wl_display_get_fd\n");
